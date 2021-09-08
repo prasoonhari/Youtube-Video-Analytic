@@ -1,0 +1,62 @@
+
+1. As part of this demo run, we will be working on the HDFS Path = /user/au2056/tars/demo
+
+2. The start point of the demo run would be to execute the script start.sh. A sample execution command would be
+
+./start.sh  <working-directory> <hdfs-out-path>
+		<working-directory> = base path of the demo directory. The shell script (start.sh) should be executed while in this directory.
+		<hdfs-out-path> = directory in hdfs where the data will be persisted. The user need not create the directory. An example such path = "/user/au2056/bdad-tars-demo"
+3. The script takes about 7-8 minutes to run end-to-end.
+4. The file generate_data  contains all the python scripts to generate seed data.
+5. The jar file tars_1.0.jar contains all our packaged spark jobs.
+
+
+
+Data Directories(apart from demo)
+
+	Base HDFS Path = /user/au2056/tars/
+
+	Data Directories for Actual Data that we generated
+
+	Raw Entities = /user/au2056/tars/raw
+	Cleaned-up Entities = /user/au2056/tars/cleaned_up
+	Watch History (multiple experiment runs) = /user/au2056/tars/experiments
+	Watch History (with large counts) = /user/au2056/tars/big-base
+	Statistical Insights Output = /user/au2056/tars/statistical
+
+
+
+
+
+Now, if we want to generate the raw_data on our own, we can use the greene_script.sh 
+
+A sample execution command would be
+
+	./greene_script.sh <number-of-users> <number-of-videos> <scratch-directory-path> <working-directory>
+
+	(eg: ./greene_script.sh 1000 5000 /scratch/pp2460  /home/pp2460/finals)
+
+	<number-of-users> = number of users we want to generate as part of our demo dataset
+	<number-of-videos> = number of videos we want to generate as part of our demo dataset
+	<scratch-directory-path> = we create a python environment under the scratch directory with pandas (for instance, scratch/pp2460)
+	<working-directory> = base path of the demo directory. The peel script (peel_script.sh) should be executed while in this directory as this 
+						diirectory will store the data that is generated.(for instance, /home/pp2460/final)
+
+
+
+
+Now run the peel scripts for the spark jobs:
+
+A sample execution command would be
+
+	./peel_script.sh <working-directory> <HDFS Path where all the result will be stored>
+
+
+	<working-directory>  = same as above
+	<HDFS Path where all the result will be stored> = any hdfs path where all the results will be stored
+
+	(eg: ./peel_script.sh /home/pp2460/final /user/pp2460/tars)
+
+
+Please make sure that the greene_script when executed must in the same folder as of generate_data.zip
+and the peel_script when executed must in the same folder as of tars_1.0.jar
